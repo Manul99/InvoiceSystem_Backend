@@ -30,7 +30,8 @@ namespace InvoiceSystem.Services
             }
             // Calculate the total price by summing up (UnitPrice * Quantity) for all items
             var total = dto.Items.Sum(i => i.UnitPrice *  i.Quantity);
-            var balance = total - dto.Discount;
+            var discountAmount = (dto.Discount / 100m) * total;
+            var balance = total - discountAmount;
 
             //Created a new object with basic transaction
             var invoice = new Invoice
