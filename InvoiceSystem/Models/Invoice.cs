@@ -10,7 +10,6 @@ namespace InvoiceSystem.Models
         public decimal Discount { get; set; }
         public decimal TotalAmount { get; set; }
         public decimal BalanceAmount { get; set; }
-        //One to Many relationship
         public ICollection<InvoiceItem> Items { get; set; } = new List<InvoiceItem>();
 
 
