@@ -25,16 +25,28 @@ builder.Services.AddCors(options =>
 });
 
 
-
+// Important: Make sure your app listens on port 5000 to match Kubernetes
+builder.WebHost.UseUrls("http://0.0.0.0:5000");
 
 var app = builder.Build();
 
+
+
+
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "InvoiceSystem API V1");
+    c.RoutePrefix = string.Empty;
+});
+
+
+
+
+
+// Add health check endpoint
+app.MapGet("/health", () => Results.Ok("Healthy"));
 
 app.UseHttpsRedirection();
 
