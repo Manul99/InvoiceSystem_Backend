@@ -1,0 +1,12 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+    name: dotnet-backend-service
+spec:
+  selector:
+    app: dotnet-backend
+  ports:
+   - protocol: TCP
+     port: 5000
+     targetPort: 5000
+  type: LoadBalancer

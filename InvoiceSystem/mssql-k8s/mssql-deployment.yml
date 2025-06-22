@@ -1,0 +1,24 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mssql-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mssql
+  template:
+    metadata:
+      labels:
+        app: mssql
+    spec:
+      containers:
+        - name: mssql
+          image: manulperera5665/invoiceappdb-db:v1
+          ports:
+            - containerPort: 1433
+          env:
+            - name: ACCEPT_EULA
+              value: "Y"
+            - name: SA_PASSWORD
+              value: "YourStrong!Passw0rd"
