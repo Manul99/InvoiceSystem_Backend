@@ -18,7 +18,7 @@ namespace InvoiceSystem.Services
             if (dto == null||dto.Items == null || !dto.Items.Any())
                 throw new ArgumentException("Invoice must include at least one item.");
 
-            if (dto.TransactionDate == default || dto.Discount < 0)
+            if (dto.TransactionDate == default)
                 throw new ArgumentException("Fill relevant fileds");
 
             foreach(var item in dto.Items)
